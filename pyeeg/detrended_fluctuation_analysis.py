@@ -98,8 +98,8 @@ def dfa(X, Ave=None, L=None):
     if Ave is None:
         Ave = numpy.mean(X)
 
-    Y = numpy.cumsum(X)
-    Y -= Ave
+    Y = numpy.cumsum(X-Ave)
+    #Y -= Ave
 
     if L is None:
         L = numpy.floor(len(X) * 1 / (
