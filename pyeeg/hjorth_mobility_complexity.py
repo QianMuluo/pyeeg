@@ -42,17 +42,10 @@ def hjorth(X, D=None):
         D = numpy.diff(X)
         D = D.tolist()
 
-    D.insert(0, X[0])  # pad the first difference
-    D = numpy.array(D)
-
-    n = len(X)
-
-    M2 = float(sum(D ** 2)) / n
-    TP = sum(numpy.array(X) ** 2)
-    M4 = 0
-    for i in range(1, len(D)):
-        M4 += (D[i] - D[i - 1]) ** 2
-    M4 = M4 / n
+   
+    M2 = numpy.var(D)
+    TP = numpy.var(X)
+    M4 = numpy.var(numpy.diff(D))
 
     return numpy.sqrt(M2 / TP), numpy.sqrt(
         float(M4) * TP / M2 / M2
